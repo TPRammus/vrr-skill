@@ -7,11 +7,10 @@ import json
 
 class VRRRequester:
 
-    def __init__(self):
-        self.home = ""
+    self.home = ""
     
     def originToDestination(self,origin, destination):
-        if(origin == "" and (not self.hasAHome())):
+        if(origin == "" and self.home == ""):
             return "Es ist kein Home und kein Anfangspunkt gegeben."
         url = "http://pda.vrr.de/vrr_mobile/XSLT_TRIP_REQUEST2"
         
@@ -67,17 +66,10 @@ class VRRRequester:
         for i in range(len(data)):
             if(data["Krefeld"][i]["Name ohne Ort"] == stop):
                 #Die Haltestelle ist vorhanden
-                isAvailable = True
-                break
-        if(isAvailable):
-            string = "Sie haben die Haltestelle {} als ihre Heimathaltestelle festgelegt."
-            string = string.format(stop)
-            self.home = stop
-        else:
-            string = "Leider ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
-        return string
-
-    def hasAHome(self):
+                return True
+        return False   
+    
+    def hasHome():
         if(self.home != ""):
             return True
         else:
