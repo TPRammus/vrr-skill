@@ -1,4 +1,5 @@
 import requests
+import time
 
 #z.B. print(originToDestination("Inrath", "Verberg"))
 
@@ -43,6 +44,12 @@ def originToDestination(origin, destination):
         string = 'Die angegebene Fahrt ist nicht verfügbar. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmal.'
 
     #print(list_of_words)
+    return string
+
+def setTimer(timeToWait):
+    for i in range(len(timeToWait)):
+        time.sleep(1)
+    string = "Der Timer ist beendet!"
     return string
 
 #z.B. print(calcCosts("einfache"))
