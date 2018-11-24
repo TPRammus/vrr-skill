@@ -78,9 +78,9 @@ class VRRRequester:
     
     def hasHome():
         if(self.home != ""):
-            return true
+            return True
         else:
-            return false
+            return False
 
     def setTimer(self,timeToWait):
         for i in range(len(timeToWait)):
