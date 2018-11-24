@@ -1,6 +1,7 @@
 import requests
 import time
 import datetime
+import json
 
 #z.B. print(originToDestination("Inrath", "Verberg"))
 
@@ -51,6 +52,24 @@ class VRRRequester:
             string = 'Die angegebene Fahrt ist nicht verfügbar. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmal.'
 
         #print(list_of_words)
+        return string
+    
+    def setHome(self, stop):
+        #Überprüfe ob Haltestelle existiert
+        with open('convertcsv.json') as f:
+            data = json.load(f)
+        isAvailable = False
+        for i in range(len(data)):
+            if(data["Krefeld"][i]["Name ohne Ort"] == stop):
+                #Die Haltestelle ist vorhanden
+                isAvailable = True
+                break
+        if(isAvailable):
+            string = "Sie haben die Haltestelle {} als ihre Heimathaltestelle festgelegt."
+            string = string.format(stop)
+            self.home = stop
+        else:
+            string = "Leider ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
         return string
 
     def setTimer(self,timeToWait):
