@@ -8,23 +8,33 @@ from .VRRRequester import VRRRequester
 class Vrr(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
+        
+    def initialize(self):
         self.requester=VRRRequester()
         
     #handles how can i get {to} request,
     #assuming VRRRRequester.home is already set
+    
     @intent_file_handler('to.intent')
     def handle_smallquery(self,message):
         b = message.data.get("b")
-        if self.requester.hasHome() :
+        if self.requester.hasAHome() :
             #home is set, return route from home
             query_response=self.requester.originToDestination(self.requester.home,b)
             self.speak(query_response)
         else:
             #home is not set, request home address
-            #TODO
-            myhome=self.get_response('gethome.intent')
+            self.speak('where do you live')
             
-            
+    @intent_file_handler('gethome.intent')
+    def handle_get_street(self,message):
+        #todo make more flexible
+        street = message.data.get('street')
+        success = self.requester.setHome(street)
+        if not (success == null):
+            self.speak('no such station '+street)
+        else:
+            self.speak('set home to '+street)
         
     #handles how can i get {from} {to} request
     @intent_file_handler('how.intent')

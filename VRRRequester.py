@@ -11,7 +11,7 @@ class VRRRequester:
         self.home = ""
     
     def originToDestination(self,origin, destination):
-        if(origin == "" and self.home == ""):
+        if(origin == "" and (not self.hasAHome())):
             return "Es ist kein Home und kein Anfangspunkt gegeben."
         url = "http://pda.vrr.de/vrr_mobile/XSLT_TRIP_REQUEST2"
         
@@ -76,12 +76,12 @@ class VRRRequester:
         else:
             string = "Leider ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
         return string
-    
-    def hasHome(self):
+
+    def hasAHome(self):
         if(self.home != ""):
-            return true
+            return True
         else:
-            return false
+            return False
 
     def setTimer(self,timeToWait):
         for i in range(len(timeToWait)):
