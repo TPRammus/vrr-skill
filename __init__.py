@@ -19,8 +19,8 @@ class Vrr(MycroftSkill):
     
     def handle_route(self,origin,destination):
         query_response=self.requester.originToDestination(origin,destination)
-        if (query_response == None):
-            self.speak('could not understand origin or destination')
+        if (query_response == 0):
+            self.speak('could not understand origin '+origin+' or destination '+destination)
         else:
             self.speak_dialog('vrr',query_response)
        

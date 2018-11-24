@@ -51,15 +51,15 @@ class VRRRequester:
                 if('&amp;requestID=1&amp;command=nop&amp;tripSelection=on&amp;itdLPxx_view=detail_2">' in list_of_words[i]):
                     index = i
                     break
-                    #raise ValueError('A very specific bad thing happened.')
+                    raise ValueError('A very specific bad thing happened.')
 
             time = list_of_words[index]
             time = time[-5:]
-            return {"origin":origin, "time":time, "duration":duration}
-        return None:
-
-        #print(list_of_words)
-        return string
+            #return {"origin":"origin", "time":"time", "duration":"duration"}
+            return {"origin":origin, "time":time, "duration":length[0]}
+            
+        except:
+            return 0
     
     def setHome(self, stop):
         #Überprüfe ob Haltestelle existiert
