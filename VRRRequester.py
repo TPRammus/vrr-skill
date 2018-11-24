@@ -7,7 +7,8 @@ import json
 
 class VRRRequester:
 
-    self.home = ""
+    def __init__(self):
+        self.home = ""
     
     def originToDestination(self,origin, destination):
         if(origin == "" and self.home == ""):
@@ -76,7 +77,7 @@ class VRRRequester:
             string = "Leider ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
         return string
     
-    def hasHome():
+    def hasHome(self):
         if(self.home != ""):
             return true
         else:
