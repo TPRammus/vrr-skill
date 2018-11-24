@@ -55,10 +55,8 @@ class VRRRequester:
 
             time = list_of_words[index]
             time = time[-5:]
-            string = 'Die Fahrt mit der Dauer von {} Minuten startet um {} Uhr in {}. Weitere Informationen?'
-            string = string.format(length[0], time, origin)
-        except:
-            string = 'Die angegebene Fahrt ist nicht verfügbar. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmal.'
+            return {"origin":origin, "time":time, "duration":duration}
+        return None:
 
         #print(list_of_words)
         return string
