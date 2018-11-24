@@ -68,9 +68,10 @@ class VRRRequester:
                 #Die Haltestelle ist vorhanden
                 return True
         return False   
-    
+
     #test
     def hasAHome(self):
+
         if(self.home != ""):
             return True
         else:
