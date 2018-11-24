@@ -1,6 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler, intent_handler
 from adapt.intent import IntentBuilder
 from .VRRRequester import VRRRequester
+import os
 
 #https://mycroft.ai/documentation/skills/introduction-developing-skills/
 
@@ -8,9 +9,10 @@ from .VRRRequester import VRRRequester
 class Vrr(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-        
-    def initialize(self):
         self.requester=VRRRequester()
+        
+    #def initialize(self):
+     #   self.requester=VRRRequester()
         
     #handles how can i get {to} request,
     #assuming VRRRRequester.home is already set
@@ -31,7 +33,7 @@ class Vrr(MycroftSkill):
         #todo make more flexible
         street = message.data.get('street')
         success = self.requester.setHome(street)
-        if not (success == null):
+        if success == False:
             self.speak('no such station '+street)
         else:
             self.speak('set home to '+street)
@@ -39,6 +41,7 @@ class Vrr(MycroftSkill):
     #handles how can i get {from} {to} request
     @intent_file_handler('how.intent')
     def handle_query(self,message):
+        #print(os.getcwd())
         a = message.data.get("a")
         b = message.data.get("b")
         query_response = self.requester.originToDestination(a,b)

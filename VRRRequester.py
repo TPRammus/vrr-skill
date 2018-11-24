@@ -2,12 +2,17 @@ import requests
 import time
 import datetime
 import json
+import os
+from difflib import SequenceMatcher
 
 #z.B. print(originToDestination("Inrath", "Verberg"))
 
 class VRRRequester:
-
-    self.home = ""
+    def __init__(self):
+        self.home = ""  
+    
+    def similar(self,a,b):
+        return SequenceMatcher(None,a,b).ratio()
     
     def originToDestination(self,origin, destination):
         if(origin == "" and self.home == ""):
@@ -60,18 +65,23 @@ class VRRRequester:
     
     def setHome(self, stop):
         #Überprüfe ob Haltestelle existiert
-        with open('convertcsv.json') as f:
+        filename='/opt/mycroft/skills/vrr-skill/convertcsv.json'
+        #return True
+        with open(filename,'r') as f:
             data = json.load(f)
-        isAvailable = False
-        for i in range(len(data)):
-            if(data["Krefeld"][i]["Name ohne Ort"] == stop):
-                #Die Haltestelle ist vorhanden
-                return True
-        return False   
+            for i in range(len(data)):
+                ratio = self.similar(data["Krefeld"][i]["Name ohne Ort"],stop)
+                if(ratio > 0.3):
+                    print(stop)
+                    
+                if(ratio >0.4):
+                    #Die Haltestelle ist vorhanden
+                    self.home=stop
+                    return True
+            return False   
 
     #test
     def hasAHome(self):
-
         if(self.home != ""):
             return True
         else:
