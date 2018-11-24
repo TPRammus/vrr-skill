@@ -10,6 +10,8 @@ class VRRRequester:
     self.home = ""
     
     def originToDestination(self,origin, destination):
+        if(origin == "" and self.home == ""):
+            return "Es ist kein Home und kein Anfangspunkt gegeben."
         url = "http://pda.vrr.de/vrr_mobile/XSLT_TRIP_REQUEST2"
         
         now = datetime.datetime.now()
