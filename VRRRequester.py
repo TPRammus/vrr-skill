@@ -7,6 +7,8 @@ import json
 
 class VRRRequester:
 
+    self.home = ""
+    
     def originToDestination(self,origin, destination):
         url = "http://pda.vrr.de/vrr_mobile/XSLT_TRIP_REQUEST2"
         
