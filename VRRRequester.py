@@ -69,7 +69,7 @@ class VRRRequester:
                 return True
         return False   
     
-    def hasHome():
+    def hasHome(self):
         if(self.home != ""):
             return True
         else:
