@@ -75,6 +75,12 @@ class VRRRequester:
         else:
             string = "Leider ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
         return string
+    
+    def hasHome():
+        if(self.home != ""):
+            return true
+        else:
+            return false
 
     def setTimer(self,timeToWait):
         for i in range(len(timeToWait)):
