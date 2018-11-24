@@ -44,3 +44,16 @@ def originToDestination(origin, destination):
 
     #print(list_of_words)
     return string
+
+#z.B. print(calcCosts("einfache"))
+def calcCosts(typeOfCard):
+    typeOfCardDict = {
+        "einfache": 1.60,
+        "gruppen": 13.60,
+        "semester": 132.72,
+        "4er": 5.90,
+        "Tages": 6.80
+    }
+    string = 'Eine {} Fahrkarte kostet {} Euro.'
+    string = string.format(typeOfCard, typeOfCardDict[typeOfCard])
+    return string
