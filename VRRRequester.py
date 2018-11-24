@@ -10,7 +10,7 @@ class VRRRequester:
         url = "http://pda.vrr.de/vrr_mobile/XSLT_TRIP_REQUEST2"
         
         now = datetime.datetime.now()
-        hour = now.hour
+        hour = now.hour + 1
         minute = now.minute
 
         payload = 'language=de&sessionID=0&requestID=0&command=&execInst=&ptOptionsActive=1&itOptionsActive=1&imageFormat=PNG&imageWidth=400&imageHeight=300&imageOnly=1&imageNoTiles=1&itdLPxx_advancedOptions=0&itdLPxx_odvPPType=&itdLPxx_execInst=&itdDateDay=24&itdDateMonth=11&itdDateYear=2018&lineRestriction=403&placeState_origin=empty&placeState_origin=empty&nameState_origin=empty&nameState_origin=empty&placeInfo_origin=invalid&nameInfo_origin=invalid&typeInfo_origin=invalid&ANSIMacro=true&ANSIMacro=true&place_origin=Krefeld&type_origin=stop&name_origin=' + origin + '&placeState_destination=empty&placeState_destination=empty&nameState_destination=empty&nameState_destination=empty&placeInfo_destination=invalid&nameInfo_destination=invalid&typeInfo_destination=invalid&place_destination=Krefeld&type_destination=stop&name_destination=' + destination + '&itdTimeHour=' + str(hour) + '&itdTimeMinute=' + str(minute) + '&itdDate=20181124&itdTripDateTimeDepArr=dep'
