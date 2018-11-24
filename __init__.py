@@ -1,5 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler, intent_handler
 from adapt.intent import IntentBuilder
+from .VRRRequester import VRRRequester
 
 #https://mycroft.ai/documentation/skills/introduction-developing-skills/
 
@@ -13,7 +14,9 @@ class Vrr(MycroftSkill):
     def handle_query(self,message):
         a = message.data.get("a")
         b = message.data.get("b")
-        self.speak(' say public transit from '+a+' to '+b)
+        requester = VRRRequester()
+        query_response = requester.originToDestination(a,b)
+        self.speak(query_response)
         
 
     @intent_file_handler('vrr.intent')
