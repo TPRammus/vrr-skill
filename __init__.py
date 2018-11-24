@@ -17,13 +17,20 @@ class Vrr(MycroftSkill):
     #handles how can i get {to} request,
     #assuming VRRRRequester.home is already set
     
+    def handle_route(self,origin,destination):
+        query_response=self.requester.originToDestination(origin,destination)
+        if (query_response == None):
+            self.speak('could not understand origin or destination')
+        else:
+            self.speak_dialog('vrr',query_response)
+       
+    
     @intent_file_handler('to.intent')
     def handle_smallquery(self,message):
         b = message.data.get("b")
         if self.requester.hasAHome() :
             #home is set, return route from home
-            query_response=self.requester.originToDestination(self.requester.home,b)
-            self.speak(query_response)
+            self.handle_route(self.requester.home,b)
         else:
             #home is not set, request home address
             self.speak('where do you live')
@@ -44,13 +51,8 @@ class Vrr(MycroftSkill):
         #print(os.getcwd())
         a = message.data.get("a")
         b = message.data.get("b")
-        query_response = self.requester.originToDestination(a,b)
-        self.speak(query_response)
-        
-
-    @intent_file_handler('vrr.intent')
-    def handle_vrr(self, message):
-        self.speak_dialog('vrr')
+        self.handle_route(a,b)
+       
 
 
 def create_skill():
